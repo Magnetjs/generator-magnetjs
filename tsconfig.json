@@ -1,0 +1,31 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "allowJs": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "target": "es6",
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "outDir": "./dist",
+        "types": [
+          "node",
+          "lodash",
+          "yeoman-generator"
+        ]
+    },
+
+    "include": [
+        "server/**/*",
+        "local_modules/**/*"
+    ],
+
+    "exclude": [
+        "node_modules/*",
+        "dist/*",
+        "database/*",
+        "docs/*",
+        "types/*",
+        "test/*"
+    ]
+}

@@ -1,36 +1,37 @@
+const path = {
+  template: 'src/**/templates/**/*',
+  generator: 'src/*/*/*.ts',
+}
+
 export default async function (fly) {
-  // await fly.start('build')
-  await fly.watch('src/**/*.ts', ['compileTypescript'])
+  await fly.start('build')
+  await fly.watch(path.generator, ['compileTypescript'])
+  // await fly.watch(path.util, ['compileTypescript'])
+  await fly.watch(path.template, ['copyTemplates'])
 }
 
 export async function build(fly) {
   await fly.serial([
     'clean',
     'compileTypescript',
-  ]);
-}
-
-export async function buildAndCopy(fly) {
-  await fly.serial([
-    'clean',
-    'compileTypescript',
-    'copyBasic',
+    'copyTemplates'
   ]);
 }
 
 export async function clean(fly) {
-  await fly.clear('dist');
+  await fly.clear('generators');
+  await fly.clear('utils');
 }
 
-export async function copyBasic(fly) {
-  await fly.source(['package.json', 'LICENSE', 'README.md'])
-    .flatten({ levels: 5 })
-    .target('dist');
+export async function copyTemplates(fly) {
+  await fly
+    .source(path.template)
+    .target('./');
 }
 
 export async function compileTypescript(fly) {
-  yield fly
-    .source('src/generators/*/*.ts')
+  await fly
+    .source(path.generator)
     .typescript({
       "sourceMap": true,
       "declaration": true,
@@ -41,11 +42,9 @@ export async function compileTypescript(fly) {
       "outDir": "./dist",
       "types": [
         "node",
-        "lodash"
-      ],
-      "typeRoots": [
-        "node_modules/@types"
+        "lodash",
+        "yeoman-generator"
       ]
     })
-    .target('generators');
+    .target('./');
 }

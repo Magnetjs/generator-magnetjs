@@ -1,7 +1,7 @@
 const Generator = require('yeoman-generator')
 const { capitalize } = require('lodash')
 
-const { BasicQuestion } = require('../../utils/generator')
+import { BasicQuestion } from '../../utils/generator'
 
 module.exports = class extends BasicQuestion {
   prompting() {

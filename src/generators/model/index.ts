@@ -1,4 +1,4 @@
-var { Basic } = require('../../utils/generator');
+import { Basic } from '../../utils/generator';
 
 module.exports = class extends Basic {
   exec() {

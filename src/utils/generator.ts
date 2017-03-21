@@ -1,11 +1,15 @@
-const shell = require('shelljs');
-const _ = require('lodash');
-const Generator = require('yeoman-generator');
-const pluralize = require('pluralize');
-const gitConfig = require('git-config');
-const { licenses } = require('generator-license');
+import * as shell from 'shelljs'
+import * as _ from 'lodash'
+import * as Generator from 'yeoman-generator'
+import * as pluralize from 'pluralize'
+import * as gitConfig from 'git-config'
+import { licenses } from 'generator-license'
 
-class Base extends Generator {
+export class Base extends Generator {
+  name: string
+  Name: string
+  names: string
+
   constructor(args, opts) {
     super(args, opts)
 
@@ -17,7 +21,7 @@ class Base extends Generator {
   }
 }
 
-class Basic extends Base {
+export class Basic extends Base {
   _writing(fromPath, toPath) {
     this.fs.copyTpl(
       this.templatePath(fromPath),
@@ -39,7 +43,8 @@ class Basic extends Base {
   }
 }
 
-class BasicQuestion extends Generator {
+export class BasicQuestion extends Generator {
+  gitc: any
   constructor(args, opts) {
     super(args, opts);
 
@@ -90,10 +95,4 @@ class BasicQuestion extends Generator {
 
     return this.prompt(prompts);
   }
-}
-
-module.exports = {
-  Base,
-  Basic,
-  BasicQuestion
 }

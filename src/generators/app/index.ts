@@ -1,111 +1,57 @@
-const Generator = require('yeoman-generator');
-const { capitalize } = require('lodash');
+import * as Generator from 'yeoman-generator';
+import { capitalize } from 'lodash'
 
-const { BasicQuestion } = require('../../utils/generator')
+import { BasicQuestion } from '../../utils/generator'
 
 module.exports = class extends BasicQuestion {
-  prompting() {
-    return this.basicQuestion()
-    .then((answers) => {
-      this.config.set(answers)
-      return this.prompt([
-        {
-          type: 'list',
-          name: 'language',
-          message: 'Which language would you like to use?',
-          store: true,
-          choices: [{
-            name: 'Typescript',
-            value: 'ts'
-          }, {
-            name: 'Javascript',
-            value: 'js'
-          }]
-        },
-        {
-          type: 'list',
-          name: 'recipe',
-          message: 'Which recipe would you prefer?',
-          store: true,
-          choices: [{
-            name: 'Api',
-            value: 'api'
-          }, {
-            name: 'Command',
-            value: 'cli'
-          }]
-        },
-      ])
-    })
-    .then((answers) => {
-      this.config.set(answers)
+  async prompting() {
+    let answers
+    answers = await this.basicQuestion()
+    this.config.set(answers)
 
-      if (answers.recipe === 'api') {
-        return this.prompt([
-          {
-            type: 'rawlist',
-            name: 'server',
-            message: 'Which server would you like to use?',
-            store: true,
-            choices: [{
-              name: 'Koa',
-              value: 'koa'
-            }, {
-              name: 'Express',
-              value: 'express'
-            }, {
-              name: 'Both',
-              value: 'both'
-            }, {
-              name: 'Skip',
-              value: 'skip'
-            }]
-          },
-          {
-            type: 'confirm',
-            name: 'includeGreenlock',
-            message: 'Would you like to use greenlock(letsencrypt)?',
-            store: true,
-          },
-        ])
-      }
-    })
-    .then((answers) => {
-      this.config.set(answers)
+    answers = await this.prompt([
+      {
+        type: 'list',
+        name: 'language',
+        message: 'Which language would you like to use?',
+        store: true,
+        choices: [{
+          name: 'Typescript',
+          value: 'ts'
+        }, {
+          name: 'Javascript',
+          value: 'js'
+        }]
+      },
+      {
+        type: 'list',
+        name: 'recipe',
+        message: 'Which recipe would you prefer?',
+        store: true,
+        choices: [{
+          name: 'Api',
+          value: 'api'
+        }, {
+          name: 'Command',
+          value: 'cli'
+        }]
+      },
+    ])
+    this.config.set(answers)
 
-      if (answers.includeGreenlock) {
-        return this.prompt([
-          {
-            type: 'list',
-            name: 'tlsServer',
-            message: 'Which https server would you like to use?',
-            store: true,
-            choices: [{
-              name: 'Https',
-              value: 'https'
-            }, {
-              name: 'Spdy',
-              value: 'spdy'
-            }]
-          },
-        ])
-      }
-    })
-    .then((answers) => {
-      this.config.set(answers)
-
-      return this.prompt([
+    if (answers.recipe === 'api') {
+      answers = await this.prompt([
         {
           type: 'rawlist',
-          name: 'orm',
-          message: 'Which orm/odm would you like to use?',
+          name: 'server',
+          message: 'Which server would you like to use?',
           store: true,
           choices: [{
-            name: 'Sequelize',
-            value: 'sequelize'
+            name: 'Koa',
+            value: 'koa'
           }, {
-            name: 'Mysql',
-            value: 'mongoose'
+            name: 'Express',
+            value: 'express'
           }, {
             name: 'Both',
             value: 'both'
@@ -114,82 +60,118 @@ module.exports = class extends BasicQuestion {
             value: 'skip'
           }]
         },
-      ])
-    })
-    .then((answers) => {
-      this.config.set(answers)
-
-      if (answers.orm === 'sequelize' || answers.orm === 'both') {
-        return this.prompt([
-          {
-            type: 'rawlist',
-            name: 'sequelizeAdapter',
-            message: 'Which database would you like to use?',
-            store: true,
-            choices: [{
-              name: 'Postgres',
-              value: 'pg'
-            }, {
-              name: 'Mysql',
-              value: 'mysql2'
-            }, {
-              name: 'Sqlite',
-              value: 'sqlite3'
-            }, {
-              name: 'MSSQL',
-              value: 'tedious'
-            }]
-          },
-        ])
-      } else {
-        return answers
-      }
-    })
-    .then((answers) => {
-      this.config.set(answers)
-
-      return this.prompt([
         {
           type: 'confirm',
-          name: 'includePrimus',
-          message: 'Do you want to use Primus for websocket?',
+          name: 'includeGreenlock',
+          message: 'Would you like to use greenlock(letsencrypt)?',
           store: true,
         },
       ])
-    })
-    .then((answers) => {
       this.config.set(answers)
+    }
 
-      if (answers.includePrimus) {
-        return this.prompt([{
-          type: 'rawlist',
-          name: 'primusTransport',
-          message: 'Which transport would you like to use?',
+    if (answers.includeGreenlock) {
+      answers = await this.prompt([
+        {
+          type: 'list',
+          name: 'tlsServer',
+          message: 'Which https server would you like to use?',
           store: true,
           choices: [{
-            name: 'BrowserChannel',
-            value: 'browserchannel'
+            name: 'Https',
+            value: 'https'
           }, {
-            name: 'Engine.IO',
-            value: 'engine.io'
-          }, {
-            name: 'Faye',
-            value: 'faye-websocket'
-          }, {
-            name: 'SockJS',
-            value: 'sockjs'
-          }, {
-            name: 'uws',
-            value: 'uws'
+            name: 'Spdy',
+            value: 'spdy'
           }]
-        }])
-      } else {
-        return answers
-      }
-    })
-    .then((answers) => {
+        },
+      ])
       this.config.set(answers)
-    })
+    }
+
+    answers = await this.prompt([
+      {
+        type: 'rawlist',
+        name: 'orm',
+        message: 'Which orm/odm would you like to use?',
+        store: true,
+        choices: [{
+          name: 'Sequelize',
+          value: 'sequelize'
+        }, {
+          name: 'Mysql',
+          value: 'mongoose'
+        }, {
+          name: 'Both',
+          value: 'both'
+        }, {
+          name: 'Skip',
+          value: 'skip'
+        }]
+      },
+    ])
+    this.config.set(answers)
+
+    if (answers.orm === 'sequelize' || answers.orm === 'both') {
+      answers = await this.prompt([
+        {
+          type: 'rawlist',
+          name: 'sequelizeAdapter',
+          message: 'Which database would you like to use?',
+          store: true,
+          choices: [{
+            name: 'Postgres',
+            value: 'pg'
+          }, {
+            name: 'Mysql',
+            value: 'mysql2'
+          }, {
+            name: 'Sqlite',
+            value: 'sqlite3'
+          }, {
+            name: 'MSSQL',
+            value: 'tedious'
+          }]
+        },
+      ])
+      this.config.set(answers)
+    }
+
+    answers = await this.prompt([
+      {
+        type: 'confirm',
+        name: 'includePrimus',
+        message: 'Do you want to use Primus for websocket?',
+        store: true,
+      },
+    ])
+    this.config.set(answers)
+
+    if (answers.includePrimus) {
+      answers = await this.prompt([{
+        type: 'rawlist',
+        name: 'primusTransport',
+        message: 'Which transport would you like to use?',
+        store: true,
+        choices: [{
+          name: 'BrowserChannel',
+          value: 'browserchannel'
+        }, {
+          name: 'Engine.IO',
+          value: 'engine.io'
+        }, {
+          name: 'Faye',
+          value: 'faye-websocket'
+        }, {
+          name: 'SockJS',
+          value: 'sockjs'
+        }, {
+          name: 'uws',
+          value: 'uws'
+        }]
+      }])
+      this.config.set(answers)
+    }
   }
 
   // prompting() {
@@ -240,20 +222,22 @@ module.exports = class extends BasicQuestion {
   }
 
   prepareGeneralFile() {
-    const lang = this.config.get('language')
-    console.log(lang);
-    [
-      [                         'gitignore', '.gitignore'],
-      [                      'editorconfig', '.editorconfig'],
-      [                         'README.md', 'README.md'],
-      [                     'tsconfig.json', 'tsconfig.json'],
+    const lang = this.config.get('language');
+
+    const files = [
+      ['gitignore', '.gitignore'],
+      ['editorconfig', '.editorconfig'],
+      ['README.md', 'README.md'],
+      ['tsconfig.json', 'tsconfig.json'],
       [`recipes/api/${lang}/config.${lang}`, `server/config/magnet.${lang}`]
-    ].forEach(([fromFile, toFile]) => {
+    ]
+
+    for (const [fromFile, toFile] of files) {
       this.fs.copy(
         this.templatePath(fromFile),
         this.destinationPath(toFile)
       );
-    })
+    }
   }
 
   source() {

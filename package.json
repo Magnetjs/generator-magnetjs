@@ -1,11 +1,12 @@
 {
   "name": "generator-magnetjs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Yo generator for magnetjs",
   "files": [
-    "generators"
+    "generators",
+    "utils"
   ],
-  "main": "index.js",
+  "main": "flyfile.js",
   "scripts": {
     "start": "fly",
     "build": "fly build",
@@ -16,8 +17,13 @@
     "magnet",
     "magnetjs"
   ],
-  "author": "",
+  "author": "Kieve Chua <kievechua@gmail.com> (https://github.com/kievechua)",
   "license": "MIT",
+  "repository": "magnetjs/generator-magnetjs",
+  "homepage": "https://github.com/Magnetjs/generator-magnetjs#readme",
+  "bugs": {
+    "url": "https://github.com/Magnetjs/generator-magnetjs/issues"
+  },
   "dependencies": {
     "generator-license": "^5.1.0",
     "git-config": "^0.0.7",

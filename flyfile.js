@@ -1,19 +1,21 @@
 const path = {
   template: 'src/**/templates/**/*',
-  generator: 'src/*/*/*.ts',
+  generators: 'src/generators/*/*.ts',
+  utils: 'src/utils/*.ts',
 }
 
 export default async function (fly) {
   await fly.start('build')
-  await fly.watch(path.generator, ['compileTypescript'])
-  // await fly.watch(path.util, ['compileTypescript'])
+  await fly.watch(path.generators, ['compileGenerators'])
+  await fly.watch(path.utils, ['compileUtils'])
   await fly.watch(path.template, ['copyTemplates'])
 }
 
 export async function build(fly) {
   await fly.serial([
     'clean',
-    'compileTypescript',
+    'compileGenerators',
+    'compileUtils',
     'copyTemplates'
   ]);
 }
@@ -29,9 +31,9 @@ export async function copyTemplates(fly) {
     .target('./');
 }
 
-export async function compileTypescript(fly) {
+export async function compileGenerators(fly) {
   await fly
-    .source(path.generator)
+    .source(path.generators)
     .typescript({
       "sourceMap": true,
       "declaration": true,
@@ -39,12 +41,30 @@ export async function compileTypescript(fly) {
       "target": "es6",
       "moduleResolution": "node",
       "module": "commonjs",
-      "outDir": "./dist",
       "types": [
         "node",
         "lodash",
         "yeoman-generator"
       ]
     })
-    .target('./');
+    .target('generators');
+}
+
+export async function compileUtils(fly) {
+  await fly
+    .source(path.utils)
+    .typescript({
+      "sourceMap": true,
+      "declaration": true,
+      "skipLibCheck": true,
+      "target": "es6",
+      "moduleResolution": "node",
+      "module": "commonjs",
+      "types": [
+        "node",
+        "lodash",
+        "yeoman-generator"
+      ]
+    })
+    .target('utils');
 }

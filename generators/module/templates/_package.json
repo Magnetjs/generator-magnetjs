@@ -1,0 +1,45 @@
+{
+  "name": "<%= moduleName %>",
+  "version": "0.1.0",
+  "description": "Magnet adapter for <%= npmModule %>",
+  "keywords": [
+    "magnet",
+    "magnetjs",
+    "<%= moduleName %>"
+  ],
+  "homepage": "https://github.com/magnetjs/<%= moduleName %>#readme",
+  "bugs": {
+    "url": "https://github.com/magnetjs/<%= moduleName %>/issues"
+  },
+  "author": "<%= name %> <<%= email %>><% if (website) { %> (<%= website %>)<% } %>",
+  <% if (!fromDist) { %>
+  "files": [
+    "README",
+    "CHANGELOG.md",
+    "dist"
+  ],
+  <% } %>
+  <% if (fromDist) { %>
+  "main": "index.js",
+  <% } else { %>
+  "main": "dist/index.js",
+  <% } %>
+  "repository": "magnetjs/<%= moduleName %>",
+  "scripts": {
+    "start": "fly",
+    <% if (fromDist) { %>
+    "build": "fly buildAndCopy",
+    "dist": "npm run build && cd dist && npm publish"
+    <% } else { %>
+    "build": "fly build",
+    "dist": "npm run build && npm publish"
+    <% } %>
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=6.9.5"
+  }
+}

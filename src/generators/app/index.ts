@@ -229,7 +229,7 @@ module.exports = class extends BasicQuestion {
       ['editorconfig', '.editorconfig'],
       ['README.md', 'README.md'],
       ['tsconfig.json', 'tsconfig.json'],
-      [`recipes/api/${lang}/config.${lang}`, `server/config/magnet.${lang}`]
+      [`recipes/api/${lang}/config.${lang}`, `src/config/magnet.${lang}`]
     ]
 
     for (const [fromFile, toFile] of files) {
@@ -294,7 +294,7 @@ module.exports = class extends BasicQuestion {
 
     if (this.config.get('includePrimus')) {
       modules.push({ module: 'primus' })
-      modules.push({ module: 'folder-loader', options: `{ folders: [{ path: 'server/routers/ws' }]}` })
+      modules.push({ module: 'folder-loader', options: `{ folders: [{ path: 'src/routers/ws' }]}` })
     }
 
     // if (server === 'koa') {
@@ -324,18 +324,18 @@ module.exports = class extends BasicQuestion {
 
     this.fs.copyTpl(
       this.templatePath(`recipes/api/js/api.js`),
-      this.destinationPath(`server/api.${lang}`),
+      this.destinationPath(`src/api.${lang}`),
       { moduleName, ModuleName, modules }
     );
     this.fs.copyTpl(
       this.templatePath(`recipes/api/js/router.js`),
-      this.destinationPath(`server/routers/http/index.${lang}`),
+      this.destinationPath(`src/routers/http/index.${lang}`),
       { moduleName, ModuleName, modules }
     );
     // for (const file of ['index', 'config']) {
     //   this.fs.copy(
     //     this.templatePath(`${lang}/${file}.${lang}`),
-    //     this.destinationPath(`server/${file}.${lang}`),
+    //     this.destinationPath(`src/${file}.${lang}`),
     //     { moduleName, ModuleName, modules }
     //   );
     // }

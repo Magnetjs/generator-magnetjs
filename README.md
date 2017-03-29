@@ -56,7 +56,7 @@ Example:
 yo magnetjs:controller user
 ```
 
-Produces `server/controllers/mycontroller.js`:
+Produces `src/controllers/mycontroller.js`:
 ```javascript
 export default function ({
   config,
@@ -87,7 +87,7 @@ Example:
 yo magnetjs:router user
 ```
 
-Produces `server/routers/graphql/user.js`:
+Produces `src/routers/graphql/user.js`:
 ```javascript
 import { graphqlToController } from '../../utils/route'
 
@@ -109,7 +109,7 @@ Example:
 yo magnetjs:router user --type http
 ```
 
-Produces `server/routers/http/user.js`:
+Produces `src/routers/http/user.js`:
 ```javascript
 export default function ({
   config,

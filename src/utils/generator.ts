@@ -37,7 +37,7 @@ export class Basic extends Base {
 
   writing(type) {
     const types = pluralize(type)
-    const destPath = `server/${types}/${this.name}.js`
+    const destPath = `src/${types}/${this.name}.js`
 
     this._writing(`${type}.js`, destPath)
   }

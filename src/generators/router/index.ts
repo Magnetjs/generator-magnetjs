@@ -25,7 +25,7 @@ module.exports = class GeneratorRoute extends Basic {
   }
 
   writing() {
-    const destPath = `server/routers/${this.type}/${this.name}.js`
+    const destPath = `src/routers/${this.type}/${this.name}.js`
 
     this._writing(`${this.type}.js`, destPath)
   }

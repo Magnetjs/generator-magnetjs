@@ -222,7 +222,7 @@ module.exports = class extends generator_1.BasicQuestion {
             ['editorconfig', '.editorconfig'],
             ['README.md', 'README.md'],
             ['tsconfig.json', 'tsconfig.json'],
-            [`recipes/api/${lang}/config.${lang}`, `server/config/magnet.${lang}`]
+            [`recipes/api/${lang}/config.${lang}`, `src/config/magnet.${lang}`]
         ];
         for (const [fromFile, toFile] of files) {
             this.fs.copy(this.templatePath(fromFile), this.destinationPath(toFile));
@@ -278,7 +278,7 @@ module.exports = class extends generator_1.BasicQuestion {
         }
         if (this.config.get('includePrimus')) {
             modules.push({ module: 'primus' });
-            modules.push({ module: 'folder-loader', options: `{ folders: [{ path: 'server/routers/ws' }]}` });
+            modules.push({ module: 'folder-loader', options: `{ folders: [{ path: 'src/routers/ws' }]}` });
         }
         // if (server === 'koa') {
         //   modules.push({ module: 'koa/start')
@@ -304,8 +304,8 @@ module.exports = class extends generator_1.BasicQuestion {
         const lang = this.config.get('language');
         const moduleName = this.config.get('moduleName');
         const ModuleName = lodash_1.capitalize(moduleName);
-        this.fs.copyTpl(this.templatePath(`recipes/api/js/api.js`), this.destinationPath(`server/api.${lang}`), { moduleName, ModuleName, modules });
-        this.fs.copyTpl(this.templatePath(`recipes/api/js/router.js`), this.destinationPath(`server/routers/http/index.${lang}`), { moduleName, ModuleName, modules });
+        this.fs.copyTpl(this.templatePath(`recipes/api/js/api.js`), this.destinationPath(`src/api.${lang}`), { moduleName, ModuleName, modules });
+        this.fs.copyTpl(this.templatePath(`recipes/api/js/router.js`), this.destinationPath(`src/routers/http/index.${lang}`), { moduleName, ModuleName, modules });
         // for (const file of ['index', 'config']) {
         //   this.fs.copy(
         //     this.templatePath(`${lang}/${file}.${lang}`),

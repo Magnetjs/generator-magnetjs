@@ -1,6 +1,6 @@
 {
   "name": "generator-magnetjs",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Yo generator for magnetjs",
   "files": [
     "generators",
@@ -10,6 +10,7 @@
   "scripts": {
     "start": "fly",
     "build": "fly build",
+    "dist": "fly build && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

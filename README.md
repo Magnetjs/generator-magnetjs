@@ -1,5 +1,7 @@
 # MagnetJS generator
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Magnetjs/generator-magnetjs.svg)](https://greenkeeper.io/)
+
 > Yeoman generator for MagnetJS - lets you quickly set up a project with sensible defaults and best practices.
 
 ## Usage

@@ -1,7 +1,5 @@
 import magnet, { fromNode, fromM, fromLocal } from 'magnet-core'
-import config from 'magnet-config/config'
-
-const { env } = config
+const { env } = require('magnet-config/config').default
 
 const modules = [
 <% modules.forEach(function(module) { -%>

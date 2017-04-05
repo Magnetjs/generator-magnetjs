@@ -1,6 +1,6 @@
 {
   "name": "generator-magnetjs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Yo generator for magnetjs",
   "files": [
     "generators",

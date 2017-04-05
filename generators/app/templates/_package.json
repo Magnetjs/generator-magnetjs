@@ -5,7 +5,7 @@
   "main": "dist/api.js",
   "private": true,
   "scripts": {
-    "dev": "nodemon src/api.<%= lang %> --watch src --watch recipes --watch local_modules --exec './node_modules/.bin/ts-node' | ./node_modules/.bin/bunyan",
+    "dev": "nodemon src/api.<%= lang %> --watch src --watch local_modules --exec './node_modules/.bin/ts-node' | ./node_modules/.bin/bunyan",
     "build": "fly build",
     "dist": "npm run build && npm publish",
     "start": "ts-node src/api",

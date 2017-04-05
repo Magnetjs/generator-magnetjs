@@ -5,7 +5,7 @@
   "keywords": [
     "magnet",
     "magnetjs",
-    "<%= moduleName %>"
+    "<%= npmModule %>"
   ],
   "homepage": "https://github.com/magnetjs/<%= moduleName %>#readme",
   "bugs": {

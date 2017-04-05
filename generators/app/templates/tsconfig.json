@@ -17,7 +17,7 @@
     },
 
     "include": [
-        "src/**/*",
+        "server/**/*",
         "local_modules/**/*"
     ],
 

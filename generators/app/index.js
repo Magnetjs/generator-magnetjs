@@ -309,7 +309,7 @@ module.exports = class extends generator_1.BasicQuestion {
         // for (const file of ['index', 'config']) {
         //   this.fs.copy(
         //     this.templatePath(`${lang}/${file}.${lang}`),
-        //     this.destinationPath(`server/${file}.${lang}`),
+        //     this.destinationPath(`src/${file}.${lang}`),
         //     { moduleName, ModuleName, modules }
         //   );
         // }

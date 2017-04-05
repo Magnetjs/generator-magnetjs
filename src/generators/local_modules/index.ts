@@ -4,7 +4,7 @@ class BasicGenerator extends Base {
   writing() {
     this.fs.copyTpl(
       this.templatePath('local_modules.js'),
-      this.destinationPath(`local_modules/${this.name}/${this.name}.js`),
+      this.destinationPath(`local_modules/${this.name}/index.js`),
       {
         name: this.name,
         Name: this.Name,
@@ -22,7 +22,7 @@ class BasicGenerator extends Base {
 }
 
 
-module.exports = class extends Basic {
+module.exports = class extends BasicGenerator {
   exec() {
     this.writing();
   }

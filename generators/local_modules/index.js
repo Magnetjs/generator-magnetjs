@@ -13,7 +13,7 @@ class BasicGenerator extends Base {
         });
     }
 }
-module.exports = class extends Basic {
+module.exports = class extends BasicGenerator {
     exec() {
         this.writing();
     }

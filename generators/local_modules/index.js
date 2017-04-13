@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var { Base } = require('../../utils/generator');
 class BasicGenerator extends Base {
     writing() {
-        this.fs.copyTpl(this.templatePath('local_modules.js'), this.destinationPath(`local_modules/${this.name}/${this.name}.js`), {
+        this.fs.copyTpl(this.templatePath('local_modules.js'), this.destinationPath(`local_modules/${this.name}/index.js`), {
             name: this.name,
             Name: this.Name,
         });

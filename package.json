@@ -1,6 +1,6 @@
 {
   "name": "generator-magnetjs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Yo generator for magnetjs",
   "files": [
     "generators",
@@ -11,7 +11,9 @@
     "start": "fly",
     "build": "fly build",
     "dist": "fly build && npm publish",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "yeoman-generator",
@@ -31,7 +33,8 @@
     "lodash": "^4.17.4",
     "pluralize": "^4.0.0",
     "shelljs": "^0.7.7",
-    "yeoman-generator": "^1.1.1"
+    "yeoman-generator": "^1.1.1",
+    "snyk": "^1.26.1"
   },
   "devDependencies": {
     "fly": "^2.0.5",
@@ -40,5 +43,6 @@
     "fly-flatten": "^1.0.1",
     "fly-typescript": "^1.0.0",
     "fly-watch": "^1.1.1"
-  }
+  },
+  "snyk": true
 }

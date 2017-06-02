@@ -87,6 +87,13 @@ module.exports = class extends BasicQuestion {
     )
   }
 
+  tsconfig() {
+    this.fs.copy(
+      this.templatePath('tsconfig.json'),
+      this.destinationPath('tsconfig.json')
+    )
+  }
+
   readMe() {
     this.fs.copyTpl(
       this.templatePath('README.md'),

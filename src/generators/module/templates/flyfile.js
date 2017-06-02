@@ -1,3 +1,5 @@
+const tsConfig = require('./tsconfig.json')
+
 export default async function (fly) {
   await fly.start('buildAndCopy')
   await fly.watch('src/**/*.ts', ['compileTypescript'])
@@ -29,23 +31,10 @@ export async function copyBasic(fly) {
 }
 
 export async function compileTypescript(fly) {
-  yield fly
-    .source('src/**/*.ts')
-    .typescript({
-      "sourceMap": true,
-      "declaration": true,
-      "skipLibCheck": true,
-      "target": "es6",
-      "moduleResolution": "node",
-      "module": "commonjs",
-      "outDir": "./dist",
-      "types": [
-        "node",
-        "lodash"
-      ],
-      "typeRoots": [
-        "node_modules/@types"
-      ]
-    })
-    .target('dist');
+  for (const include of tsConfig.include) {
+    yield fly
+      .source(include)
+      .typescript(tsConfig.compilerOptions)
+      .target(tsConfig.compilerOptions.outDir);
+  }
 }

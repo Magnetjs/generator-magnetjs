@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.0
+version: v1.14.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:shelljs:20140723':
@@ -21,4 +21,28 @@ ignore:
     - generator-license > yeoman-generator > shelljs:
         reason: None given
         expires: '2017-06-10T01:43:53.316Z'
-patch: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - yeoman-generator > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - yeoman-generator > async > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - yeoman-generator > yeoman-environment > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - generator-license > yeoman-generator > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - generator-license > yeoman-generator > async > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - generator-license > yeoman-generator > yeoman-environment > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - generator-license > yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2020-05-01T07:33:56.812Z'
+    - generator-license > yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2020-05-01T07:33:56.812Z'

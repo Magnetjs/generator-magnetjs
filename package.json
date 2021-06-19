@@ -28,7 +28,7 @@
     "url": "https://github.com/Magnetjs/generator-magnetjs/issues"
   },
   "dependencies": {
-    "generator-license": "^5.1.0",
+    "generator-license": "^5.5.0",
     "git-config": "^0.0.7",
     "lodash": "^4.17.4",
     "pluralize": "^4.0.0",

@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.0
+version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:shelljs:20140723':
@@ -21,4 +21,49 @@ ignore:
     - generator-license > yeoman-generator > shelljs:
         reason: None given
         expires: '2017-06-10T01:43:53.316Z'
-patch: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - yeoman-generator > debug:
+        patched: '2022-10-07T21:21:38.446Z'
+    - yeoman-generator > yeoman-environment > debug:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > debug:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > yeoman-environment > debug:
+        patched: '2022-10-07T21:21:38.446Z'
+  'npm:extend:20180424':
+    - yeoman-generator > yeoman-environment > inquirer > external-editor > extend:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > yeoman-environment > inquirer > external-editor > extend:
+        patched: '2022-10-07T21:21:38.446Z'
+  SNYK-JS-LODASH-567746:
+    - yeoman-generator > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - yeoman-generator > async > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - yeoman-generator > yeoman-environment > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > async > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > yeoman-environment > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2022-10-07T21:21:38.446Z'
+  'npm:ms:20170412':
+    - yeoman-generator > debug > ms:
+        patched: '2022-10-07T21:21:38.446Z'
+    - yeoman-generator > yeoman-environment > debug > ms:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > debug > ms:
+        patched: '2022-10-07T21:21:38.446Z'
+    - generator-license > yeoman-generator > yeoman-environment > debug > ms:
+        patched: '2022-10-07T21:21:38.446Z'

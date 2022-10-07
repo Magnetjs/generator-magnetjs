@@ -12,8 +12,8 @@
     "build": "fly build",
     "dist": "fly build && npm publish",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "snyk-protect": "snyk-protect",
+    "prepublish": "yarn run snyk-protect"
   },
   "keywords": [
     "yeoman-generator",
@@ -28,13 +28,13 @@
     "url": "https://github.com/Magnetjs/generator-magnetjs/issues"
   },
   "dependencies": {
-    "generator-license": "^5.1.0",
+    "generator-license": "^5.5.0",
     "git-config": "^0.0.7",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.21",
     "pluralize": "^4.0.0",
-    "shelljs": "^0.7.7",
-    "yeoman-generator": "^1.1.1",
-    "snyk": "^1.30.0"
+    "shelljs": "^0.8.5",
+    "yeoman-generator": "^4.11.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "fly": "^2.0.5",

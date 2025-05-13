@@ -32,7 +32,7 @@
     "git-config": "^0.0.7",
     "lodash": "^4.17.4",
     "pluralize": "^4.0.0",
-    "shelljs": "^0.7.7",
+    "shelljs": "^0.10.0",
     "yeoman-generator": "^1.1.1",
     "snyk": "^1.30.0"
   },
